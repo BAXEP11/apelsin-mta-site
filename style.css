@@ -70,7 +70,7 @@ img { border-radius: 10px; }
 footer { margin-top: 50px; color: #555; }
 
 /* ==========================================================================
-   СТИЛИ ДЛЯ МОДАЛЬНОГО ОКНА (POPUP)
+   ОБНОВЛЕННЫЕ СТИЛИ ДЛЯ МОДАЛЬНЫХ ОКОН (POPUP)
    ========================================================================== */
 
 /* Задний фон (затемнение всей страницы) */
@@ -84,20 +84,31 @@ footer { margin-top: 50px; color: #555; }
     height: 100%;
     background-color: rgba(0, 0, 0, 0.75); /* Полупрозрачный черный цвет */
     backdrop-filter: blur(4px); /* Легкое размытие заднего плана */
+    
+    /* Центрирование окон на любых экранах */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Изменили логику отображения для скрипта (чтобы центрирование работало) */
+.modal[style*="display: block"] {
+    display: flex !important;
 }
 
 /* Само окошко по центру */
 .modal-content {
     background-color: #1a1a1a;
-    margin: 15% auto;
     padding: 25px;
     border: 2px solid var(--accent); /* Оранжевая рамка */
     width: 90%;
-    max-width: 350px; /* Ограничение по ширине */
+    max-width: 420px; /* Увеличили ширину, чтобы требования влезали красиво */
     border-radius: 10px;
     text-align: left; /* Текст требований выровнен по левому краю */
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.7);
     position: relative;
+    box-sizing: border-box;
+    max-height: 90vh; /* Чтобы окно не вылезало за границы экрана */
+    overflow-y: auto; /* Добавляет скролл, если на маленьком телефоне не влезет */
 }
 
 /* Кнопка закрытия (крестик) */
@@ -110,6 +121,7 @@ footer { margin-top: 50px; color: #555; }
     font-weight: bold;
     cursor: pointer;
     transition: 0.2s;
+    line-height: 1;
 }
 
 .close-btn:hover {
@@ -120,8 +132,9 @@ footer { margin-top: 50px; color: #555; }
 .modal-title {
     color: var(--accent);
     margin-top: 0;
-    margin-bottom: 20px;
-    font-size: 22px;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* Список характеристик */
@@ -132,12 +145,22 @@ footer { margin-top: 50px; color: #555; }
 }
 
 .specs-list li {
-    margin-bottom: 10px;
-    font-size: 16px;
+    margin-bottom: 8px;
+    font-size: 15px;
     border-bottom: 1px solid #2a2a2a;
     padding-bottom: 5px;
+    color: #e0e0e0;
 }
 
 .specs-list li strong {
     color: var(--accent);
+}
+
+/* Кастомизация скроллбара внутри модалки (если появится) */
+.modal-content::-webkit-scrollbar {
+    width: 6px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 3px;
 }
