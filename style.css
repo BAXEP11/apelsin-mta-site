@@ -68,3 +68,76 @@ button:hover { filter: brightness(1.2); }
 img { border-radius: 10px; }
 
 footer { margin-top: 50px; color: #555; }
+
+/* ==========================================================================
+   СТИЛИ ДЛЯ МОДАЛЬНОГО ОКНА (POPUP)
+   ========================================================================== */
+
+/* Задний фон (затемнение всей страницы) */
+.modal {
+    display: none; /* По умолчанию скрыто */
+    position: fixed;
+    z-index: 100; /* Отображается поверх всего сайта */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75); /* Полупрозрачный черный цвет */
+    backdrop-filter: blur(4px); /* Легкое размытие заднего плана */
+}
+
+/* Само окошко по центру */
+.modal-content {
+    background-color: #1a1a1a;
+    margin: 15% auto;
+    padding: 25px;
+    border: 2px solid var(--accent); /* Оранжевая рамка */
+    width: 90%;
+    max-width: 350px; /* Ограничение по ширине */
+    border-radius: 10px;
+    text-align: left; /* Текст требований выровнен по левому краю */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+/* Кнопка закрытия (крестик) */
+.close-btn {
+    color: #888;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.close-btn:hover {
+    color: var(--accent); /* При наведении крестик станет оранжевым */
+}
+
+/* Стили заголовка внутри окна */
+.modal-title {
+    color: var(--accent);
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+/* Список характеристик */
+.specs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.specs-list li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    border-bottom: 1px solid #2a2a2a;
+    padding-bottom: 5px;
+}
+
+.specs-list li strong {
+    color: var(--accent);
+}
