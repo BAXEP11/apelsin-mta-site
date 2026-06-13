@@ -2,125 +2,120 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="icon.png">
-    <title>APELSIN MTA</title>
+    <title>APELSIN MTA — Игра про Россию!</title>
 </head>
 <body>
     <header>
         <div class="header-container">
-            <a href="/" class="logo">APELSIN MTA</a>
+            <a href="/" class="logo">APELSIN <span class="accent-text">MTA</span></a>
             <nav class="nav-buttons">
-                <a href="https://forum.apelsin-mta.ru"><button class="btn-gray">Форум</button></a>
-                <a href="#"><button class="btn-blue">Discord</button></a>
+                <a href="https://forum.apelsin-mta.ru" class="btn btn-gray">Форум</a>
+                <a href="#" class="btn btn-discord">Discord</a>
             </nav>
         </div>
     </header>
 
-    <main>
-        <h1 class="main-title">APELSIN MTA - Игра про Россию!</h1>
-
-        <div class="cta-section">
-            <a href="#"><button class="btn-play">ИГРАТЬ</button></a>
-            <div class="helper-links">
-                <a href="#" id="openModal" class="sub-link">Системные требования</a>
-                <a href="#" id="openInstallModal" class="sub-link">Как установить?</a>
+    <main class="main-container">
+        <div class="hero-section">
+            <h1 class="main-title">APELSIN MTA — <br><span class="gradient-text">Игра про Россию!</span></h1>
+            <p class="hero-subtitle">На нашем проекте ты можешь стать кем угодно! Выбирай свой путь.</p>
+            
+            <div class="cta-section">
+                <a href="#" class="btn btn-play">ИГРАТЬ</a>
+                <div class="helper-links">
+                    <a href="#" data-modal="sysModal" class="sub-link">Системные требования</a>
+                    <a href="#" data-modal="installModal" class="sub-link">Как установить?</a>
+                </div>
             </div>
         </div>
 
-        <p>На нашем проекте ты можешь стать кем угодно!</p>
-
         <div class="gallery">
-            <img src="band_fact.png" alt="Бандит ИЛИ Полицейский" width="800" height="400">
+            <div class="img-wrapper">
+                <img src="band_fact.png" alt="Бандит ИЛИ Полицейский">
+            </div>
         </div>
 
-        <h2>Онлайн: 0/0</h2>
-
-        <footer>
-            <p>&copy; 2023-2026 APELSIN-MTA. Все права защищены.</p>
-        </footer>
+        <div class="online-widget">
+            <span class="online-dot"></span>
+            <span class="online-text">Онлайн сервера: <strong id="server-online">0 / 0</strong></span>
+        </div>
     </main>
 
+    <footer>
+        <p>&copy; 2023—2026 APELSIN-MTA. Все права защищены.</p>
+    </footer>
+
+    <!-- Модальное окно: Системные требования -->
     <div id="sysModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn" id="closeSys">&times;</span>
+            <span class="close-btn">&times;</span>
             
-            <h3 class="modal-title" style="margin-bottom: 10px;">Минимальные требования</h3>
-            <ul class="specs-list" style="margin-bottom: 25px;">
+            <h3 class="modal-title">Минимальные требования</h3>
+            <ul class="specs-list">
                 <li><strong>ОС:</strong> Windows 10 / 11</li>
-                <li><strong>Процессор:</strong> Intel Core 2 Duo / Athlon 64 X2</li>
+                <li><strong>Процессор:</strong> Intel Core 2 Duo / AMD Athlon 64 X2</li>
                 <li><strong>ОЗУ:</strong> 4 GB RAM</li>
-                <li><strong>Видеокарта:</strong> GT 7600</li>
+                <li><strong>Видеокарта:</strong> NVIDIA GT 7600</li>
                 <li><strong>Место на диске:</strong> 20 GB</li>
-                <li><strong>Разрешение экрана:</strong> 1280x720</li>
-                <li><strong>Скорость интернета:</strong> 50 мбит/с</li>
+                <li><strong>Интернет:</strong> 50 Мбит/с</li>
             </ul>
 
-            <h3 class="modal-title" style="margin-bottom: 10px;">Рекомендуемые требования</h3>
+            <h3 class="modal-title" style="margin-top: 20px;">Рекомендуемые требования</h3>
             <ul class="specs-list">
                 <li><strong>ОС:</strong> Windows 10 / 11 (64-bit)</li>
                 <li><strong>Процессор:</strong> Intel Core i3 / AMD FX</li>
                 <li><strong>ОЗУ:</strong> 8 GB RAM</li>
                 <li><strong>Видеокарта:</strong> GTX 1050 Ti / RX 560</li>
-                <li><strong>Место на диске:</strong> 25 GB </li>
-                <li><strong>Разрешение экрана:</strong> 1920x1080</li>
-                <li><strong>Скорость интернета:</strong> от 100 мбит/с</li>
+                <li><strong>Место на диске:</strong> 25 GB (желательно SSD)</li>
+                <li><strong>Интернет:</strong> от 100 Мбит/с</li>
             </ul>
         </div>
     </div>
 
+    <!-- Модальное окно: Установка -->
     <div id="installModal" class="modal">
-        <div class="modal-content" style="text-align: center;">
-            <span class="close-btn" id="closeInstall">&times;</span>
+        <div class="modal-content text-center">
+            <span class="close-btn">&times;</span>
             <h3 class="modal-title">Как установить игру?</h3>
-            <p style="text-align: left; font-size: 15px; color: #ccc; line-height: 1.5; margin-bottom: 25px;">
-                1. Скачайте архив по кнопке ниже.<br>
-                2. Распакуйте архив.<br>
-                3. После распаковки архива,откройте папку с игрой и запустите APELSIN MTA.exe!
-            </p>
-            <a href="https://www.test.ru" target="_blank">
-                <button class="btn-play" style="font-size: 16px; padding: 12px 30px; width: 100%;">Скачать лаунчер</button>
-            </a>
+            <div class="steps-list">
+                <div class="step-item"><span>1</span> <p>Скачайте архив по ссылке ниже.</p></div>
+                <div class="step-item"><span>2</span> <p>Распакуйте файлы в удобное место.</p></div>
+                <div class="step-item"><span>3</span> <p>Запустите файл <strong>APELSIN MTA.exe</strong> и залетайте на сервер!</p></div>
+            </div>
+            <a href="https://www.test.ru" target="_blank" class="btn btn-play full-width">Скачать лаунчер</a>
         </div>
     </div>
 
     <script>
-        // Элементы для Системных требований
-        const sysModal = document.getElementById("sysModal");
-        const openSysBtn = document.getElementById("openModal");
-        const closeSysBtn = document.getElementById("closeSys");
+        // Универсальный скрипт для работы с модальными окнами
+        const modalTriggers = document.querySelectorAll('[data-modal]');
+        const modals = document.querySelectorAll('.modal');
+        const closeButtons = document.querySelectorAll('.close-btn');
 
-        // Элементы для Как установить
-        const installModal = document.getElementById("installModal");
-        const openInstallBtn = document.getElementById("openInstallModal");
-        const closeInstallBtn = document.getElementById("closeInstall");
+        modalTriggers.forEach(trigger => {
+            trigger.onclick = function(e) {
+                e.preventDefault();
+                const modalId = this.getAttribute('data-modal');
+                const targetModal = document.getElementById(modalId);
+                if (targetModal) targetModal.style.display = "flex";
+            }
+        });
 
-        // Открытие окон
-        openSysBtn.onclick = function(e) {
-            e.preventDefault();
-            sysModal.style.display = "block";
-        }
-        openInstallBtn.onclick = function(e) {
-            e.preventDefault();
-            installModal.style.display = "block";
-        }
+        closeButtons.forEach(btn => {
+            btn.onclick = function() {
+                this.closest('.modal').style.display = "none";
+            }
+        });
 
-        // Закрытие окон при нажатии на крестики
-        closeSysBtn.onclick = function() {
-            sysModal.style.display = "none";
-        }
-        closeInstallBtn.onclick = function() {
-            installModal.style.display = "none";
-        }
-
-        // Закрытие окон при клике на темную область вокруг них
         window.onclick = function(event) {
-            if (event.target == sysModal) {
-                sysModal.style.display = "none";
-            }
-            if (event.target == installModal) {
-                installModal.style.display = "none";
-            }
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
         }
     </script>
 </body>
