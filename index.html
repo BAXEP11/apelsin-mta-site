@@ -11,8 +11,8 @@
         <div class="header-container">
             <a href="/" class="logo">APELSIN MTA</a>
             <nav class="nav-buttons">
-                <a href="#"><button class="btn-gray">Форум</button></a>
-                <a href="#"><button class="btn-blue">Discord</button></a>
+                <a href="https://forum.apelsin-mta.ru"><button class="btn-gray">Форум</button></a>
+                <a href="https://discord.com"><button class="btn-blue">Discord</button></a>
             </nav>
         </div>
     </header>
@@ -21,9 +21,9 @@
         <h1 class="main-title">APELSIN MTA - Игра про Россию!</h1>
 
         <div class="cta-section">
-            <a href="#"><button class="btn-play">ИГРАТЬ СЕЙЧАС</button></a>
+            <a href="#"><button class="btn-play">ИГРАТЬ</button></a>
             <div class="helper-links">
-                <a href="#" class="sub-link">Системные требования</a>
+                <a href="#" id="openModal" class="sub-link">Системные требования</a>
                 <a href="#" class="sub-link">Как установить?</a>
             </div>
         </div>
@@ -31,7 +31,8 @@
         <p>На нашем проекте ты можешь стать кем угодно!</p>
 
         <div class="gallery">
-            <img src="band_fact.png" alt="Бандит или полицейский" width="800" height="400">
+            <img src="bandit.png" alt="Бандит" width="400" height="400">
+            <img src="faction.png" alt="Полицейский" width="400" height="400">
         </div>
 
         <h2>Онлайн: 0/0</h2>
@@ -40,5 +41,43 @@
             <p>&copy; 2023-2026 APELSIN-MTA. Все права защищены.</p>
         </footer>
     </main>
+
+    <div id="sysModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3 class="modal-title">Системные требования</h3>
+            <ul class="specs-list">
+                <li><strong>ОС:</strong> Windows 10 / 11</li>
+                <li><strong>Процессор:</strong> Intel Core i3 / AMD FX</li>
+                <li><strong>ОЗУ:</strong> 4 GB RAM</li>
+                <li><strong>Видеокарта:</strong> 1 GB VRAM</li>
+                <li><strong>Место на диске:</strong> 5 GB</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById("sysModal");
+        const btn = document.getElementById("openModal");
+        const closeBtn = document.querySelector(".close-btn");
+
+        // Открыть окно при клике на "Системные требования"
+        btn.onclick = function(e) {
+            e.preventDefault(); // Отменяем переход по ссылке #
+            modal.style.display = "block";
+        }
+
+        // Закрыть окно при клике на крестик
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Закрыть окно при клике в любое место вне окошка
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
