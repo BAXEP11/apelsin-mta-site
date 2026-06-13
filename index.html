@@ -4,380 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APELSIN MTA — Игра про Россию!</title>
-    <style>
-        :root {
-            --bg-color: #0b0b0c;          /* Глубокий черный цвет фона */
-            --accent-orange: #ff9400;     /* Насыщенный оранжевый */
-            --accent-blue: #0052ff;       /* Яркий синий цвет для ссылок в шапке */
-            --text-white: #ffffff;
-            --text-muted: #787880;        /* Серый цвет для подзаголовка */
-            --link-gray: #848484;         /* Цвет нижних ссылок */
-            --bg-card: #141418;           /* Фон карточек внутри модалок */
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-white);
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* Шапка сайта */
-        .site-header {
-            width: 100%;
-            padding: 25px 0;
-        }
-
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 40px;
-            box-sizing: border-box;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--text-white);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .logo span {
-            color: var(--accent-orange);
-            margin-left: 2px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 25px;
-        }
-
-        .nav-links a {
-            color: var(--accent-blue);
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 18px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: opacity 0.2s;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.8;
-        }
-
-        /* Главный контент */
-        .main-content {
-            width: 100%;
-            max-width: 1200px;
-            padding: 20px 20px 40px 20px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-sizing: border-box;
-            flex-grow: 1;
-        }
-
-        .hero-title {
-            font-size: 46px;
-            font-weight: 800;
-            line-height: 1.15;
-            margin: 30px 0 15px 0;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .hero-title .orange-text {
-            color: var(--accent-orange);
-        }
-
-        .hero-subtitle {
-            color: var(--text-muted);
-            font-size: 15px;
-            max-width: 520px;
-            line-height: 1.4;
-            margin: 0 0 40px 0;
-        }
-
-        /* Кнопка ИГРАТЬ и ссылки */
-        .cta-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 50px;
-        }
-
-        .btn-play {
-            background-color: var(--accent-orange);
-            color: var(--text-white);
-            font-size: 15px;
-            font-weight: 700;
-            text-decoration: none;
-            text-transform: uppercase;
-            padding: 13px 50px;
-            border-radius: 5px;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 20px rgba(255, 148, 0, 0.15);
-            transition: background-color 0.2s, transform 0.1s;
-        }
-
-        .btn-play:hover {
-            background-color: #e68500;
-        }
-
-        .btn-play:active {
-            transform: scale(0.98);
-        }
-
-        .helper-links {
-            margin-top: 20px;
-            display: flex;
-            gap: 20px;
-        }
-
-        .helper-link {
-            color: var(--link-gray);
-            font-size: 12px;
-            text-decoration: underline;
-            text-underline-offset: 3px;
-            cursor: pointer;
-        }
-
-        .helper-link:hover {
-            color: var(--text-white);
-        }
-
-        /* Карточка/Баннер по центру */
-        .promo-gallery {
-            max-width: 800px;
-            width: 100%;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-            margin-bottom: 40px;
-        }
-
-        .promo-gallery img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Онлайн */
-        .online-text {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .online-text span {
-            color: var(--accent-orange);
-        }
-
-        footer {
-            padding: 30px 20px;
-            color: #3a3a3c;
-            font-size: 13px;
-            text-align: center;
-            width: 100%;
-            box-sizing: border-box;
-            border-top: 1px solid rgba(255, 255, 255, 0.02);
-        }
-
-        /* Модальные окна (Попапы) */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 100;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(6px);
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background-color: var(--bg-card);
-            padding: 30px;
-            border: 1px solid rgba(255, 148, 0, 0.25);
-            width: 90%;
-            max-width: 440px;
-            border-radius: 12px;
-            text-align: left;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-            position: relative;
-            box-sizing: border-box;
-            max-height: 85vh;
-            overflow-y: auto;
-        }
-
-        .close-btn {
-            color: #636366;
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.2s;
-            line-height: 1;
-        }
-
-        .close-btn:hover {
-            color: var(--accent-orange);
-        }
-
-        .modal-title {
-            color: var(--accent-orange);
-            margin: 0 0 15px 0;
-            font-size: 18px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 700;
-        }
-
-        .specs-list {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 25px 0;
-        }
-
-        .specs-list:last-of-type {
-            margin-bottom: 0;
-        }
-
-        .specs-list li {
-            margin-bottom: 8px;
-            font-size: 14px;
-            border-bottom: 1px solid #222227;
-            padding-bottom: 6px;
-            color: #d1d1d6;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .specs-list li strong {
-            color: var(--accent-orange);
-            font-weight: 600;
-        }
-
-        .instructions-text {
-            font-size: 14px;
-            color: #d1d1d6;
-            line-height: 1.5;
-            margin: 0 0 25px 0;
-        }
-
-        .btn-download {
-            display: block;
-            background-color: var(--accent-orange);
-            color: var(--text-white);
-            text-align: center;
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 5px;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 14px;
-            letter-spacing: 0.5px;
-            transition: background-color 0.2s;
-        }
-
-        .btn-download:hover {
-            background-color: #e68500;
-        }
-
-        /* Кастомизация скроллбара в модалке */
-        .modal-content::-webkit-scrollbar { width: 4px; }
-        .modal-content::-webkit-scrollbar-thumb { background: var(--accent-orange); border-radius: 2px; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="site-header">
-        <div class="header-container">
-            <a href="/" class="logo">APELSIN <span>MTA</span></a>
-            <nav class="nav-links">
-                <a href="https://forum.apelsin-mta.ru">ФОРУМ</a>
-                <a href="#">DISCORD</a>
+    <header class="header">
+        <div class="container header__container">
+            <a href="/" class="logo">APELSIN <span class="logo__orange">MTA</span></a>
+            <nav class="nav">
+                <a href="https://forum.apelsin-mta.ru" class="nav__link">ФОРУМ</a>
+                <a href="#" class="nav__link">DISCORD</a>
             </nav>
         </div>
     </header>
 
-    <main class="main-content">
-        <h1 class="hero-title">APELSIN MTA — <br><span class="orange-text">Игра про Россию!</span></h1>
-        <p class="hero-subtitle">На нашем проекте ты можешь стать кем угодно! Выбирай свой путь.</p>
-        
-        <div class="cta-container">
-            <a href="#" class="btn-play">ИГРАТЬ</a>
-            <div class="helper-links">
-                <a id="openSys" class="helper-link">Системные требования</a>
-                <a id="openInstall" class="helper-link">Как установить?</a>
+    <main class="main">
+        <section class="hero container">
+            <h1 class="hero__title">
+                APELSIN MTA — <br>
+                <span class="hero__title--orange">Игра про Россию!</span>
+            </h1>
+            <p class="hero__subtitle">На нашем проекте ты можешь стать кем угодно! Выбирай свой путь.</p>
+            
+            <div class="cta-block">
+                <a href="#" class="btn-play">ИГРАТЬ</a>
+                <div class="cta-block__links">
+                    <button type="button" class="modal-trigger" data-target="sysModal">Системные требования</button>
+                    <button type="button" class="modal-trigger" data-target="installModal">Как установить?</button>
+                </div>
             </div>
-        </div>
 
-        <div class="promo-gallery">
-            <img src="band_fact.png" alt="Бандитом или Государственным служащим!">
-        </div>
+            <div class="promo-preview">
+                <img src="band_fact.png" alt="Бандитом или Государственным служащим!" class="promo-preview__img">
+            </div>
 
-        <h2 class="online-text">Онлайн: <span id="online-counter">0/0</span></h2>
+            <div class="server-status">
+                <h2 class="server-status__title">Онлайн: <span id="online-counter">0/0</span></h2>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <p>&copy; 2023-2026 APELSIN-MTA. Все права защищены.</p>
+    <footer class="footer">
+        <p class="footer__text">&copy; 2023-2026 APELSIN-MTA. Все права защищены.</p>
     </footer>
 
     <div id="sysModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" id="closeSys">&times;</span>
+        <div class="modal__dialog">
+            <button type="button" class="modal__close">&times;</button>
             
-            <h3 class="modal-title">Минимальные требования</h3>
+            <h3 class="modal__title">Минимальные требования</h3>
             <ul class="specs-list">
-                <li><strong>ОС:</strong> <span>Windows 10 / 11</span></li>
-                <li><strong>Процессор:</strong> <span>Intel Core 2 Duo / Athlon 64 X2</span></li>
-                <li><strong>ОЗУ:</strong> <span>4 GB RAM</span></li>
-                <li><strong>Видеокарта:</strong> <span>GT 7600</span></li>
-                <li><strong>Место на диске:</strong> <span>20 GB</span></li>
-                <li><strong>Экран:</strong> <span>1280x720</span></li>
-                <li><strong>Интернет:</strong> <span>50 мбит/с</span></li>
+                <li class="specs-list__item"><strong>ОС:</strong> <span>Windows 10 / 11</span></li>
+                <li class="specs-list__item"><strong>Процессор:</strong> <span>Intel Core 2 Duo / Athlon 64 X2</span></li>
+                <li class="specs-list__item"><strong>ОЗУ:</strong> <span>4 GB RAM</span></li>
+                <li class="specs-list__item"><strong>Видеокарта:</strong> <span>GT 7600</span></li>
+                <li class="specs-list__item"><strong>Место на диске:</strong> <span>20 GB</span></li>
+                <li class="specs-list__item"><strong>Интернет:</strong> <span>50 мбит/с</span></li>
             </ul>
 
-            <h3 class="modal-title" style="margin-top: 20px;">Рекомендуемые требования</h3>
+            <h3 class="modal__title" style="margin-top: 25px;">Рекомендуемые требования</h3>
             <ul class="specs-list">
-                <li><strong>ОС:</strong> <span>Windows 10 / 11 (64-bit)</span></li>
-                <li><strong>Процессор:</strong> <span>Intel Core i3 / AMD FX</span></li>
-                <li><strong>ОЗУ:</strong> <span>8 GB RAM</span></li>
-                <li><strong>Видеокарта:</strong> <span>GTX 1050 Ti / RX 560</span></li>
-                <li><strong>Место на диске:</strong> <span>25 GB</span></li>
-                <li><strong>Экран:</strong> <span>1920x1080</span></li>
-                <li><strong>Интернет:</strong> <span>от 100 мбит/с</span></li>
+                <li class="specs-list__item"><strong>ОС:</strong> <span>Windows 10 / 11 (64-bit)</span></li>
+                <li class="specs-list__item"><strong>Процессор:</strong> <span>Intel Core i3 / AMD FX</span></li>
+                <li class="specs-list__item"><strong>ОЗУ:</strong> <span>8 GB RAM</span></li>
+                <li class="specs-list__item"><strong>Видеокарта:</strong> <span>GTX 1050 Ti / RX 560</span></li>
+                <li class="specs-list__item"><strong>Место на диске:</strong> <span>25 GB</span></li>
+                <li class="specs-list__item"><strong>Интернет:</strong> <span>от 100 мбит/с</span></li>
             </ul>
         </div>
     </div>
 
     <div id="installModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" id="closeInstall">&times;</span>
-            <h3 class="modal-title" style="text-align: center; margin-bottom: 20px;">Как установить игру?</h3>
+        <div class="modal__dialog modal__dialog--center">
+            <button type="button" class="modal__close">&times;</button>
+            <h3 class="modal__title">Как установить игру?</h3>
             
-            <div class="instructions-text">
-                1. Скачайте архив по кнопке ниже.<br>
-                2. Распакуйте архив в удобное место.<br>
-                3. Откройте папку с игрой и запустите <strong>APELSIN MTA.exe</strong>!
+            <div class="instructions">
+                <p class="instructions__step">1. Скачайте архив по кнопке ниже.</p>
+                <p class="instructions__step">2. Распакуйте архив в удобное для вас место.</p>
+                <p class="instructions__step">3. Запустите файл <strong>APELSIN MTA.exe</strong> внутри папки.</p>
             </div>
             
             <a href="https://www.test.ru" target="_blank" class="btn-download">Скачать лаунчер</a>
@@ -385,28 +90,28 @@
     </div>
 
     <script>
-        const sysModal = document.getElementById("sysModal");
-        const installModal = document.getElementById("installModal");
+        const triggers = document.querySelectorAll('[data-target]');
+        const modals = document.querySelectorAll('.modal');
+        const closeButtons = document.querySelectorAll('.modal__close');
 
-        const openSys = document.getElementById("openSys");
-        const openInstall = document.getElementById("openInstall");
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const targetId = trigger.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('modal--active');
+            });
+        });
 
-        const closeSys = document.getElementById("closeSys");
-        const closeInstall = document.getElementById("closeInstall");
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                button.closest('.modal').classList.remove('modal--active');
+            });
+        });
 
-        // Открытие по клику
-        openSys.onclick = () => sysModal.style.display = "flex";
-        openInstall.onclick = () => installModal.style.display = "flex";
-
-        // Закрытие по крестику
-        closeSys.onclick = () => sysModal.style.display = "none";
-        closeInstall.onclick = () => installModal.style.display = "none";
-
-        // Закрытие по серому фону вокруг попапа
-        window.onclick = (e) => {
-            if (e.target === sysModal) sysModal.style.display = "none";
-            if (e.target === installModal) installModal.style.display = "none";
-        }
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('modal--active');
+            }
+        });
     </script>
 </body>
 </html>
