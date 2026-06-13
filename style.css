@@ -1,166 +1,286 @@
 :root {
-    --bg-color: #121212;
+    --bg-color: #0a0a0c;
+    --bg-card: #141418;
     --accent: #ff9900;
+    --accent-glow: rgba(255, 153, 0, 0.25);
+    --text-main: #ffffff;
+    --text-muted: #a0a0ab;
 }
 
 body {
     background-color: var(--bg-color);
-    color: #ffffff;
-    font-family: 'Segoe UI', sans-serif;
+    color: var(--text-main);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     margin: 0;
     padding: 0;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
-    background: #1a1a1a;
-    padding: 20px;
-    border-bottom: 2px solid var(--accent);
+    background: rgba(20, 20, 24, 0.8);
+    backdrop-filter: blur(12px);
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255, 153, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 50;
 }
 
 .header-container {
     display: flex;
-    justify-content: space-between; /* Лого СЛЕВА, кнопки СПРАВА */
+    justify-content: space-between;
     align-items: center;
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
 .logo {
-    color: var(--accent);
-    font-family: 'Segoe UI Black', sans-serif;
-    font-size: 28px;
+    color: var(--text-main);
+    font-weight: 900;
+    font-size: 24px;
     text-decoration: none;
+    letter-spacing: 1px;
 }
+
+.accent-text { color: var(--accent); }
 
 .nav-buttons {
     display: flex;
-    gap: 15px;
+    gap: 12px;
+}
+
+/* Универсальные кнопки взамен <button> */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--text-main);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 14px;
+}
+
+.btn-gray { 
+    background-color: #27272a; 
+}
+.btn-gray:hover { 
+    background-color: #3f3f46; 
+    transform: translateY(-1px);
+}
+
+.btn-discord { 
+    background-color: #5865F2; 
+}
+.btn-discord:hover { 
+    background-color: #4752C4; 
+    box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
+    transform: translateY(-1px);
+}
+
+.btn-play { 
+    background-color: var(--accent); 
+    font-size: 18px; 
+    padding: 16px 48px;
+    letter-spacing: 1px;
+    box-shadow: 0 0 25px var(--accent-glow);
+}
+.btn-play:hover { 
+    transform: translateY(-2px);
+    box-shadow: 0 0 35px rgba(255, 153, 0, 0.45);
+}
+
+.full-width { width: 100%; box-sizing: border-box; }
+
+/* Контентная часть */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+    flex-grow: 1;
 }
 
 .main-title {
-    color: var(--accent);
-    margin: 50px 0;
-    font-size: 3rem;
-    text-align: center; /* Заголовок по центру */
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin: 0 0 15px 0;
+    line-height: 1.1;
 }
 
-button {
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    color: white;
-    transition: 0.3s;
+.gradient-text {
+    background: linear-gradient(45deg, #ff9900, #ffb84d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-button:hover { filter: brightness(1.2); }
+.hero-subtitle {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+}
 
-.btn-gray { background-color: #333; }
-.btn-blue { background-color: #7289da; }
-.btn-play { background-color: var(--accent); font-size: 18px; padding: 15px 40px; }
+.helper-links { margin-top: 20px; }
+.sub-link { 
+    color: var(--text-muted); 
+    text-decoration: none; 
+    margin: 0 15px; 
+    font-size: 14px;
+    border-bottom: 1px dashed var(--text-muted);
+    transition: color 0.2s;
+}
+.sub-link:hover { color: var(--accent); border-color: var(--accent); }
 
-.helper-links { margin-top: 15px; }
-.sub-link { color: #aaaaaa; text-decoration: underline; margin: 0 10px; }
+/* Галерея промо */
+.gallery { 
+    display: flex; 
+    justify-content: center; 
+    margin: 50px 0; 
+}
+.img-wrapper {
+    max-width: 800px;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 1px 1px rgba(255,255,255,0.1);
+}
+.img-wrapper img { 
+    width: 100%; 
+    height: auto; 
+    display: block; 
+}
 
-.gallery { display: flex; justify-content: center; gap: 20px; margin-top: 40px; }
-img { border-radius: 10px; }
+/* Современный виджет онлайна */
+.online-widget {
+    display: inline-flex;
+    align-items: center;
+    background: var(--bg-card);
+    padding: 12px 24px;
+    border-radius: 50px;
+    border: 1px solid rgba(255,255,255,0.05);
+    margin-bottom: 30px;
+}
+.online-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #10b981;
+    border-radius: 50%;
+    margin-right: 12px;
+    box-shadow: 0 0 10px #10b981;
+    animation: pulse 2s infinite;
+}
+.online-text { font-size: 16px; color: #e4e4e7; }
+.online-text strong { color: var(--accent); margin-left: 5px; }
 
-footer { margin-top: 50px; color: #555; }
+footer { 
+    padding: 30px 20px; 
+    color: #52525b; 
+    font-size: 14px;
+    border-top: 1px solid rgba(255,255,255,0.02);
+    text-align: center;
+}
 
 /* ==========================================================================
-   ОБНОВЛЕННЫЕ СТИЛИ ДЛЯ МОДАЛЬНЫХ ОКОН (POPUP)
+   МОДЕРНИЗИРОВАННЫЕ МОДАЛЬНЫЕ ОКНА
    ========================================================================== */
-
-/* Задний фон (затемнение всей страницы) */
 .modal {
-    display: none; /* По умолчанию скрыто */
+    display: none;
     position: fixed;
-    z-index: 100; /* Отображается поверх всего сайта */
+    z-index: 100;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.75); /* Полупрозрачный черный цвет */
-    backdrop-filter: blur(4px); /* Легкое размытие заднего плана */
-    
-    /* Центрирование окон на любых экранах */
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
     align-items: center;
     justify-content: center;
 }
 
-/* Изменили логику отображения для скрипта (чтобы центрирование работало) */
-.modal[style*="display: block"] {
-    display: flex !important;
-}
-
-/* Само окошко по центру */
 .modal-content {
-    background-color: #1a1a1a;
-    padding: 25px;
-    border: 2px solid var(--accent); /* Оранжевая рамка */
+    background-color: var(--bg-card);
+    padding: 30px;
+    border: 1px solid rgba(255, 153, 0, 0.3);
     width: 90%;
-    max-width: 420px; /* Увеличили ширину, чтобы требования влезали красиво */
-    border-radius: 10px;
-    text-align: left; /* Текст требований выровнен по левому краю */
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.7);
+    max-width: 460px;
+    border-radius: 16px;
+    text-align: left;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
     position: relative;
     box-sizing: border-box;
-    max-height: 90vh; /* Чтобы окно не вылезало за границы экрана */
-    overflow-y: auto; /* Добавляет скролл, если на маленьком телефоне не влезет */
+    max-height: 85vh;
+    overflow-y: auto;
+    animation: modalSlideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Кнопка закрытия (крестик) */
+.text-center { text-align: center; }
+
+@keyframes modalSlideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
 .close-btn {
-    color: #888;
+    color: #71717a;
     position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 28px;
-    font-weight: bold;
+    top: 16px;
+    right: 20px;
+    font-size: 24px;
     cursor: pointer;
-    transition: 0.2s;
-    line-height: 1;
+    transition: color 0.2s;
 }
+.close-btn:hover { color: var(--accent); }
 
-.close-btn:hover {
-    color: var(--accent); /* При наведении крестик станет оранжевым */
-}
-
-/* Стили заголовка внутри окна */
 .modal-title {
-    color: var(--accent);
-    margin-top: 0;
-    font-size: 20px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    color: var(--text-main);
+    margin: 0 0 20px 0;
+    font-size: 22px;
+    font-weight: 800;
 }
 
-/* Список характеристик */
-.specs-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
+/* Списки */
+.specs-list { list-style: none; padding: 0; margin: 0; }
 .specs-list li {
-    margin-bottom: 8px;
-    font-size: 15px;
-    border-bottom: 1px solid #2a2a2a;
-    padding-bottom: 5px;
-    color: #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: #d4d4d8;
 }
+.specs-list li strong { color: var(--accent); font-weight: 500; }
 
-.specs-list li strong {
+/* Красивые шаги для установки */
+.steps-list { margin-bottom: 30px; text-align: left; }
+.step-item { display: flex; align-items: flex-start; margin-bottom: 15px; }
+.step-item span {
+    background: rgba(255, 153, 0, 0.1);
     color: var(--accent);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    margin-right: 15px;
+    flex-shrink: 0;
 }
+.step-item p { margin: 3px 0 0 0; color: #d4d4d8; font-size: 15px; line-height: 1.4; }
 
-/* Кастомизация скроллбара внутри модалки (если появится) */
-.modal-content::-webkit-scrollbar {
-    width: 6px;
-}
-.modal-content::-webkit-scrollbar-thumb {
-    background: var(--accent);
-    border-radius: 3px;
-}
+/* Скроллбар */
+.modal-content::-webkit-scrollbar { width: 6px; }
+.modal-content::-webkit-scrollbar-thumb { background: rgba(255,153,0,0.3); border-radius: 10px; }
