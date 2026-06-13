@@ -24,11 +24,11 @@
             <a href="#"><button class="btn-play">ИГРАТЬ</button></a>
             <div class="helper-links">
                 <a href="#" id="openModal" class="sub-link">Системные требования</a>
-                <a href="#" class="sub-link">Как установить?</a>
+                <a href="#" id="openInstallModal" class="sub-link">Как установить?</a>
             </div>
         </div>
 
-        <p>На нашем проекте ты можешь стать кем угодно!</p>
+        <p>На нашем проекта ты можешь стать кем угодно!</p>
 
         <div class="gallery">
             <img src="band_fact.png" alt="Бандит ИЛИ Полицейский" width="800" height="400">
@@ -43,40 +43,83 @@
 
     <div id="sysModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h3 class="modal-title">Системные требования</h3>
-            <ul class="specs-list">
+            <span class="close-btn" id="closeSys">&times;</span>
+            
+            <h3 class="modal-title" style="margin-bottom: 10px;">Минимальные требования</h3>
+            <ul class="specs-list" style="margin-bottom: 25px;">
                 <li><strong>ОС:</strong> Windows 10 / 11</li>
                 <li><strong>Процессор:</strong> Intel Core 2 Duo / Athlon 64 X2</li>
                 <li><strong>ОЗУ:</strong> 4 GB RAM</li>
-                <li><strong>Видеокарта:</strong> HD 2000</li>
+                <li><strong>Видеокарта:</strong> GT 7600</li>
                 <li><strong>Место на диске:</strong> 20 GB</li>
                 <li><strong>Разрешение экрана:</strong> 1280x720</li>
-                <li><strong>Скорость интернета:</strong>50 мбит/с</li>
+                <li><strong>Скорость интернета:</strong> 50 мбит/с</li>
+            </ul>
+
+            <h3 class="modal-title" style="margin-bottom: 10px;">Рекомендуемые требования</h3>
+            <ul class="specs-list">
+                <li><strong>ОС:</strong> Windows 10 / 11 (64-bit)</li>
+                <li><strong>Процессор:</strong> Intel Core i3 / AMD FX</li>
+                <li><strong>ОЗУ:</strong> 8 GB RAM</li>
+                <li><strong>Видеокарта:</strong> GTX 1050 Ti / RX 560</li>
+                <li><strong>Место на диске:</strong> 25 GB </li>
+                <li><strong>Разрешение экрана:</strong> 1920x1080</li>
+                <li><strong>Скорость интернета:</strong> от 100 мбит/с</li>
             </ul>
         </div>
     </div>
 
+    <div id="installModal" class="modal">
+        <div class="modal-content" style="text-align: center;">
+            <span class="close-btn" id="closeInstall">&times;</span>
+            <h3 class="modal-title">Как установить игру?</h3>
+            <p style="text-align: left; font-size: 15px; color: #ccc; line-height: 1.5; margin-bottom: 25px;">
+                1. Скачайте архив по кнопке ниже.<br>
+                2. Распакуйте архив.<br>
+                3. После распаковки архива,откройте папку с игрой и запустите APELSIN MTA.exe!
+            </p>
+            <a href="https://www.test.ru" target="_blank">
+                <button class="btn-play" style="font-size: 16px; padding: 12px 30px; width: 100%;">Скачать лаунчер</button>
+            </a>
+        </div>
+    </div>
+
     <script>
-        const modal = document.getElementById("sysModal");
-        const btn = document.getElementById("openModal");
-        const closeBtn = document.querySelector(".close-btn");
+        // Элементы для Системных требований
+        const sysModal = document.getElementById("sysModal");
+        const openSysBtn = document.getElementById("openModal");
+        const closeSysBtn = document.getElementById("closeSys");
 
-        // Открыть окно при клике на "Системные требования"
-        btn.onclick = function(e) {
-            e.preventDefault(); // Отменяем переход по ссылке #
-            modal.style.display = "block";
+        // Элементы для Как установить
+        const installModal = document.getElementById("installModal");
+        const openInstallBtn = document.getElementById("openInstallModal");
+        const closeInstallBtn = document.getElementById("closeInstall");
+
+        // Открытие окон
+        openSysBtn.onclick = function(e) {
+            e.preventDefault();
+            sysModal.style.display = "block";
+        }
+        openInstallBtn.onclick = function(e) {
+            e.preventDefault();
+            installModal.style.display = "block";
         }
 
-        // Закрыть окно при клике на крестик
-        closeBtn.onclick = function() {
-            modal.style.display = "none";
+        // Закрытие окон при нажатии на крестики
+        closeSysBtn.onclick = function() {
+            sysModal.style.display = "none";
+        }
+        closeInstallBtn.onclick = function() {
+            installModal.style.display = "none";
         }
 
-        // Закрыть окно при клике в любое место вне окошка
+        // Закрытие окон при клике на темную область вокруг них
         window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
+            if (event.target == sysModal) {
+                sysModal.style.display = "none";
+            }
+            if (event.target == installModal) {
+                installModal.style.display = "none";
             }
         }
     </script>
